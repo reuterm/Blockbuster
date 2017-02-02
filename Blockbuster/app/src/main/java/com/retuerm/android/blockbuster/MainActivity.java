@@ -2,16 +2,12 @@ package com.retuerm.android.blockbuster;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.retuerm.android.blockbuster.Utility.FetchData;
-import com.retuerm.android.blockbuster.Utility.NetworkUtils;
-
-import java.io.IOException;
+import com.retuerm.android.blockbuster.Utility.FetchMovieList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_sort_most_popular:
-                new FetchData(new FetchData.AsyncResponse() {
+                new FetchMovieList(new FetchMovieList.AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
                         Toast.makeText(MainActivity.this, output, Toast.LENGTH_LONG).show();
@@ -46,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 }).execute("popular");
                 return true;
             case R.id.action_sort_top_rated:
-                new FetchData(new FetchData.AsyncResponse() {
+                new FetchMovieList(new FetchMovieList.AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
                         Toast.makeText(MainActivity.this, output, Toast.LENGTH_LONG).show();

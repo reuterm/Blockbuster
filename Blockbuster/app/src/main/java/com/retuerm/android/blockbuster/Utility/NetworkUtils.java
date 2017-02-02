@@ -26,12 +26,12 @@ public class NetworkUtils {
         return response.body().string();
     }
 
-    public static HttpUrl buildMoviesURL (String mode) {
+    public static HttpUrl buildMoviesURL (String sorting_mode) {
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("https")
                 .host("api.themoviedb.org")
                 .addPathSegments("3/movie")
-                .addPathSegment(mode)
+                .addPathSegment(sorting_mode)
                 .addQueryParameter("api_key", ApiContract.API_KEY)
                 .build();
         return url;
