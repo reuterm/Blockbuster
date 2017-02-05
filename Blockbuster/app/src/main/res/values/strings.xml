@@ -2,4 +2,5 @@
     <string name="app_name">Blockbuster</string>
     <string name="sort_most_popular">Sort by most popular</string>
     <string name="sort_top_rated">Sort by top rated</string>
+    <string name="error_message">Could not retrieve movie list. Please try again.</string>
 </resources>

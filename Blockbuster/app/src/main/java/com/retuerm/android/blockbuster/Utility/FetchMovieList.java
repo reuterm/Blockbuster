@@ -1,9 +1,9 @@
 package com.retuerm.android.blockbuster.Utility;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.retuerm.android.blockbuster.MainActivity;
+import org.json.JSONException;
 
 import java.io.IOException;
 
@@ -13,10 +13,10 @@ import okhttp3.HttpUrl;
  * Created by max on 02/02/2017.
  */
 
-public class FetchMovieList extends AsyncTask<String, Void, String> {
+public class FetchMovieList extends AsyncTask<String, Void, MovieItem[]> {
 
     public interface AsyncResponse {
-        void processFinish(String output);
+        void processFinish(MovieItem[] output);
     }
 
     public AsyncResponse delegate;
@@ -26,21 +26,29 @@ public class FetchMovieList extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected MovieItem[] doInBackground(String... params) {
         if(params.length == 0) return null;
 
-        String sorting_mode = params[0];
-        HttpUrl url = NetworkUtils.buildMoviesURL(sorting_mode);
+        String sortingMode = params[0];
+        HttpUrl url = NetworkUtils.buildMoviesURL(sortingMode);
+//        Log.d("Blockbuster", url.toString());
+        String JSONResponse = "";
         try {
-            return NetworkUtils.getResponseFromURL(url);
+            JSONResponse = NetworkUtils.getResponseFromURL(url);
+            return NetworkUtils.parseJSONMovieList(JSONResponse);
         } catch (IOException e) {
             e.printStackTrace();
-            return "";
+            return null;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("Blockbuster", "JSON exception");
+            Log.d("Blockbuster", JSONResponse);
+            return null;
         }
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        delegate.processFinish(s);
+    protected void onPostExecute(MovieItem[] movies) {
+        delegate.processFinish(movies);
     }
 }
