@@ -39,6 +39,8 @@ public class DetailActivity extends AppCompatActivity {
         if(intent.hasExtra(MainActivity.PASS)) {
             MovieItem passedMovie = intent.getParcelableExtra(MainActivity.PASS);
             Uri posterUri = Uri.parse(passedMovie.getImageURL().toString());
+
+            // Nicely format release date string
             DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String release;

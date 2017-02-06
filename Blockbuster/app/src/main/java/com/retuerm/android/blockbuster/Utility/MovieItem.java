@@ -9,6 +9,7 @@ import okhttp3.HttpUrl;
  * Created by max on 05/02/2017.
  */
 
+// Helper class which represents a single movie
 public class MovieItem  implements Parcelable {
     private String title;
     private String releaseDate;

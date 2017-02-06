@@ -45,6 +45,7 @@ public class NetworkUtils {
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("https")
                 .host("image.tmdb.org")
+                // App was testet with Nexus 5X emulator
                 .addPathSegments("t/p/w500")
                 // Drop leading "/" because OkHTTP will try to encode it
                 .addEncodedPathSegment(posterPath.substring(1))
@@ -54,8 +55,11 @@ public class NetworkUtils {
 
     public static MovieItem[] parseJSONMovieList(String JSONString) throws JSONException {
         JSONObject response = new JSONObject(JSONString);
+        // Get results array which contains the list of movies
         JSONArray movieList = response.getJSONArray("results");
+        // Create array of MovieItems
         MovieItem[] movies = new MovieItem[movieList.length()];
+        // Loop through JSONArray and populate MovieItems array
         for (int i = 0; i < movieList.length(); i++ ) {
             JSONObject movieObject = movieList.getJSONObject(i);
             movies[i] = new MovieItem(movieObject.getString("title"), movieObject.getString("release_date"),

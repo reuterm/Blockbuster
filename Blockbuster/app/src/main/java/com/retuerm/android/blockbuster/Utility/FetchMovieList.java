@@ -15,6 +15,7 @@ import okhttp3.HttpUrl;
 
 public class FetchMovieList extends AsyncTask<String, Void, MovieItem[]> {
 
+    // Interface to allow caller to be notified when AsyncTask has finished
     public interface AsyncResponse {
         void processFinish(MovieItem[] output);
     }
@@ -31,10 +32,10 @@ public class FetchMovieList extends AsyncTask<String, Void, MovieItem[]> {
 
         String sortingMode = params[0];
         HttpUrl url = NetworkUtils.buildMoviesURL(sortingMode);
-//        Log.d("Blockbuster", url.toString());
         String JSONResponse = "";
         try {
             JSONResponse = NetworkUtils.getResponseFromURL(url);
+            // Parse JSON here so I cannot slow down UI task
             return NetworkUtils.parseJSONMovieList(JSONResponse);
         } catch (IOException e) {
             e.printStackTrace();

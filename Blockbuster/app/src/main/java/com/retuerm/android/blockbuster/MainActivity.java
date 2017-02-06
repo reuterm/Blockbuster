@@ -2,7 +2,6 @@ package com.retuerm.android.blockbuster;
 
 import android.content.Intent;
 import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -26,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private static final String GRID_STATE_KEY = "blockbuste_gridlayout_state";
     public static final String PASS = "blockbuster_movie_item";
 
-    private Bundle mBundleRecyclerViewState;
-
     private ProgressBar mLoadingIndicator;
     private TextView mErrorDisplay;
     private RecyclerView mRecyclerView;
@@ -42,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mErrorDisplay = (TextView) findViewById(R.id.tv_error_message);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_movie_list);
 
+        // App was tested with Nexus 5X emulator
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
@@ -50,13 +48,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mMovieAdapter = new MovieAdapter(this);
         mRecyclerView.setAdapter(mMovieAdapter);
 
-//        if(savedInstanceState != null && savedInstanceState.containsKey(GRID_STATE_KEY)) {
-//            Log.d("Blockbuster", "restore");
-//            mRecyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(GRID_STATE_KEY));
-//        } else {
-//            Log.d("Blockbuster", "reload");
-//            loadMovieList(PATH_MOST_POPULAR);
-//        }
+        // Only load data if there is no savedInstanceState to start from (doest not work somehow)
         if(savedInstanceState == null) loadMovieList(PATH_MOST_POPULAR);
     }
 
@@ -70,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private void loadMovieList(String sortingMode) {
         mRecyclerView.setVisibility(View.INVISIBLE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
+        // Handle AsyncTask to retrieve movie list
         new FetchMovieList(new FetchMovieList.AsyncResponse() {
             @Override
             public void processFinish(MovieItem[] output) {
@@ -114,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         startActivity(intent);
     }
 
+    // Does not work correctly
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -122,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         Log.d("Blockbuster", "onSaveInstanceSate");
     }
 
+    // Does not work correclty
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
