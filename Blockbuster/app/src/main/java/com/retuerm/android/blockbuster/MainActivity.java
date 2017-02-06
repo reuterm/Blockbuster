@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.retuerm.android.blockbuster.Utility.FetchMovieList;
 import com.retuerm.android.blockbuster.Utility.MovieItem;
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private static final String PATH_MOST_POPULAR = "popular";
     private static final String PATH_TOP_RATED = "top_rated";
-    public static final String INTENT_EXTRA_FLAG = "blockbuster_movie_item";
+    public static final String PASS = "blockbuster_movie_item";
 
     private ProgressBar mLoadingIndicator;
     private TextView mErrorDisplay;
@@ -97,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void onClick(MovieItem movie) {
-        Toast.makeText(this, movie.getTitle(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, movie.getTitle(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(PASS, movie);
+        startActivity(intent);
     }
 }

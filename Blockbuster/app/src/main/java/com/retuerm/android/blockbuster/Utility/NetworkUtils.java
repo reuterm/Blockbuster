@@ -62,8 +62,6 @@ public class NetworkUtils {
             movies[i] = new MovieItem(movieObject.getString("title"), movieObject.getString("release_date"),
                     movieObject.getString("overview"), movieObject.getDouble("vote_average"),
                     buildMoviePosterURL(movieObject.getString("poster_path")));
-//            Log.d("Blockbuster:parseJSON", movies[i].getTitle());
-//            Log.d("Blockbuster:parseJSON", movies[i].getImageURL().toString());
         }
         return movies;
     }
