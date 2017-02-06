@@ -1,11 +1,14 @@
 package com.retuerm.android.blockbuster;
 
 import android.content.Intent;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +23,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private static final String PATH_MOST_POPULAR = "popular";
     private static final String PATH_TOP_RATED = "top_rated";
+    private static final String GRID_STATE_KEY = "blockbuste_gridlayout_state";
     public static final String PASS = "blockbuster_movie_item";
+
+    private Bundle mBundleRecyclerViewState;
 
     private ProgressBar mLoadingIndicator;
     private TextView mErrorDisplay;
@@ -44,7 +50,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mMovieAdapter = new MovieAdapter(this);
         mRecyclerView.setAdapter(mMovieAdapter);
 
-        loadMovieList(PATH_MOST_POPULAR);
+//        if(savedInstanceState != null && savedInstanceState.containsKey(GRID_STATE_KEY)) {
+//            Log.d("Blockbuster", "restore");
+//            mRecyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(GRID_STATE_KEY));
+//        } else {
+//            Log.d("Blockbuster", "reload");
+//            loadMovieList(PATH_MOST_POPULAR);
+//        }
+        if(savedInstanceState == null) loadMovieList(PATH_MOST_POPULAR);
     }
 
     @Override
@@ -96,9 +109,27 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void onClick(MovieItem movie) {
-//        Toast.makeText(this, movie.getTitle(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(PASS, movie);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable gridState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(GRID_STATE_KEY, gridState);
+        Log.d("Blockbuster", "onSaveInstanceSate");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if(savedInstanceState.containsKey(GRID_STATE_KEY)) {
+            Parcelable gridState = savedInstanceState.getParcelable(GRID_STATE_KEY);
+            mRecyclerView.getLayoutManager().onRestoreInstanceState(gridState);
+            Log.d("Blockbuster", "onRestoreInstanceState");
+        }
     }
 }

@@ -10,6 +10,11 @@ import android.widget.TextView;
 import com.retuerm.android.blockbuster.Utility.MovieItem;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DetailActivity extends AppCompatActivity {
 
     private ImageView mPosterDisplay;
@@ -34,10 +39,21 @@ public class DetailActivity extends AppCompatActivity {
         if(intent.hasExtra(MainActivity.PASS)) {
             MovieItem passedMovie = intent.getParcelableExtra(MainActivity.PASS);
             Uri posterUri = Uri.parse(passedMovie.getImageURL().toString());
+            DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String release;
+            try {
+                Date releaseDate = format.parse(passedMovie.getReleaseDate());
+                release = df.format(releaseDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                release = passedMovie.getReleaseDate();
+            }
+
 
             Picasso.with(this).load(posterUri).into(mPosterDisplay);
             mTitleDisplay.setText(passedMovie.getTitle());
-            mReleaseDateDisplay.setText(passedMovie.getReleaseDate());
+            mReleaseDateDisplay.setText(release);
             mPlotDisplay.setText(passedMovie.getPlotSynopsis());
             mAverageRatingDisplay.setText(Double.toString(passedMovie.getAverageRating()));
         }

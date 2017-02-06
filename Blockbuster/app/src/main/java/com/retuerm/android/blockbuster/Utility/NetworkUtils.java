@@ -38,7 +38,6 @@ public class NetworkUtils {
                 .addPathSegment(sortingMode)
                 .addQueryParameter("api_key", ApiContract.API_KEY)
                 .build();
-        Log.d("Bockbuster:MoviesURL", url.toString());
         return url;
     }
 
