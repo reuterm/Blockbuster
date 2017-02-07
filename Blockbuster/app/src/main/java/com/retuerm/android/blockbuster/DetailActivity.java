@@ -18,6 +18,8 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.retuerm.android.blockbuster.Utility.NetworkUtils;
+
 public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_movie_poster_detail) ImageView mPosterDisplay;
@@ -37,26 +39,26 @@ public class DetailActivity extends AppCompatActivity {
 
         if(intent.hasExtra(MainActivity.PASS)) {
             MovieItem passedMovie = intent.getParcelableExtra(MainActivity.PASS);
-            Uri posterUri = Uri.parse(passedMovie.getImageURL().toString());
+            Uri posterUri = Uri.parse(passedMovie.getPosterURL());
 
             // Nicely format release date string
             DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String release;
             try {
-                Date releaseDate = format.parse(passedMovie.getReleaseDate());
+                Date releaseDate = format.parse(passedMovie.getRelease_date());
                 release = df.format(releaseDate);
             } catch (ParseException e) {
                 e.printStackTrace();
-                release = passedMovie.getReleaseDate();
+                release = passedMovie.getRelease_date();
             }
 
 
             Picasso.with(this).load(posterUri).into(mPosterDisplay);
             mTitleDisplay.setText(passedMovie.getTitle());
             mReleaseDateDisplay.setText(release);
-            mPlotDisplay.setText(passedMovie.getPlotSynopsis());
-            mAverageRatingDisplay.setText(Double.toString(passedMovie.getAverageRating()));
+            mPlotDisplay.setText(passedMovie.getOverview());
+            mAverageRatingDisplay.setText(Double.toString(passedMovie.getVote_average()));
         }
 
 

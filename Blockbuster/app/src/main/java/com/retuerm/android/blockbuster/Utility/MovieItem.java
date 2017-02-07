@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import okhttp3.HttpUrl;
 
+import static com.retuerm.android.blockbuster.Utility.NetworkUtils.buildMoviePosterURL;
+
 /**
  * Created by max on 05/02/2017.
  */
@@ -12,44 +14,44 @@ import okhttp3.HttpUrl;
 // Helper class which represents a single movie
 public class MovieItem  implements Parcelable {
     private String title;
-    private String releaseDate;
-    private String plotSynopsis;
-    private double averageRating;
-    private HttpUrl imageURL;
+    private String release_date;
+    private String overview;
+    private double vote_average;
+    private String poster_path;
 
     public MovieItem(String title, String releaseDate, String plotSynopsis, double averageRating,
-                     HttpUrl imageURL) {
+                     String imageURL) {
         this.title = title;
-        this.releaseDate = releaseDate;
-        this.plotSynopsis = plotSynopsis;
-        this.averageRating = averageRating;
-        this.imageURL = imageURL;
+        this.release_date = releaseDate;
+        this.overview = plotSynopsis;
+        this.vote_average = averageRating;
+        poster_path = imageURL;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public String getPlotSynopsis() {
-        return plotSynopsis;
+    public String getOverview() {
+        return overview;
     }
 
-    public double getAverageRating() {
-        return averageRating;
+    public double getVote_average() {
+        return vote_average;
     }
 
-    public HttpUrl getImageURL() {
-        return imageURL;
+    public String getPosterURL() {
+        return NetworkUtils.buildMoviePosterURL(poster_path);
     }
 
     public static final Parcelable.Creator<MovieItem> CREATOR = new Parcelable.Creator<MovieItem>() {
         public MovieItem createFromParcel(Parcel in) {
             return new MovieItem(in.readString(), in.readString(), in.readString(), in.readDouble(),
-                    HttpUrl.parse(in.readString()));
+                    in.readString());
         }
 
         public MovieItem[] newArray(int size) {
@@ -65,9 +67,9 @@ public class MovieItem  implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
-        dest.writeString(releaseDate);
-        dest.writeString(plotSynopsis);
-        dest.writeDouble(averageRating);
-        dest.writeString(imageURL.toString());
+        dest.writeString(release_date);
+        dest.writeString(overview);
+        dest.writeDouble(vote_average);
+        dest.writeString(poster_path);
     }
 }

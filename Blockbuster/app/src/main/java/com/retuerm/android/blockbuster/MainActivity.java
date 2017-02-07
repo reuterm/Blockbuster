@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.retuerm.android.blockbuster.Utility.FetchMovieList;
 import com.retuerm.android.blockbuster.Utility.MovieItem;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -66,12 +68,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         // Handle AsyncTask to retrieve movie list
         new FetchMovieList(new FetchMovieList.AsyncResponse() {
             @Override
-            public void processFinish(MovieItem[] output) {
+            public void processFinish(ArrayList<MovieItem> output) {
                 MainActivity.this.mLoadingIndicator.setVisibility(View.INVISIBLE);
                 if(output == null) {
                     showErrorMessage();
                 } else {
-                    mMovieAdapter.setMovieList(output);
+                    // Convert typed ArrayList to typed array
+                    MovieItem[] movieList = new MovieItem[output.size()];
+                    movieList = output.toArray(movieList);
+                    mMovieAdapter.setMovieList(movieList);
                     showMovieList();
                 }
             }
