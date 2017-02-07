@@ -15,24 +15,23 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
 
-    private ImageView mPosterDisplay;
-    private TextView mTitleDisplay;
-    private TextView mReleaseDateDisplay;
-    private TextView mPlotDisplay;
-    private TextView mAverageRatingDisplay;
+    @BindView(R.id.iv_movie_poster_detail) ImageView mPosterDisplay;
+    @BindView(R.id.tv_movie_title) TextView mTitleDisplay;
+    @BindView(R.id.tv_movie_release_date) TextView mReleaseDateDisplay;
+    @BindView(R.id.tv_movie_plot) TextView mPlotDisplay;
+    @BindView(R.id.tv_average_rating) TextView mAverageRatingDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mPosterDisplay = (ImageView) findViewById(R.id.iv_movie_poster_detail);
-        mTitleDisplay = (TextView) findViewById(R.id.tv_movie_title);
-        mReleaseDateDisplay = (TextView) findViewById(R.id.tv_movie_release_date);
-        mPlotDisplay = (TextView) findViewById(R.id.tv_movie_plot);
-        mAverageRatingDisplay = (TextView) findViewById(R.id.tv_average_rating);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
 

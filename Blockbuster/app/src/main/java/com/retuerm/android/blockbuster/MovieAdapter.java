@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import com.retuerm.android.blockbuster.Utility.MovieItem;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by max on 03/02/2017.
  */
@@ -59,11 +62,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        public final ImageView mPosterView;
+        @BindView(R.id.iv_movie_poster) public ImageView mPosterView;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
-            mPosterView = (ImageView) itemView.findViewById(R.id.iv_movie_poster);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

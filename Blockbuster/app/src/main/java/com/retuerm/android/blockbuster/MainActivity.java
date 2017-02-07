@@ -18,16 +18,19 @@ import android.widget.TextView;
 import com.retuerm.android.blockbuster.Utility.FetchMovieList;
 import com.retuerm.android.blockbuster.Utility.MovieItem;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler {
 
     private static final String PATH_MOST_POPULAR = "popular";
     private static final String PATH_TOP_RATED = "top_rated";
-    private static final String GRID_STATE_KEY = "blockbuste_gridlayout_state";
+    private static final String GRID_STATE_KEY = "blockbuster_gridlayout_state";
     public static final String PASS = "blockbuster_movie_item";
 
-    private ProgressBar mLoadingIndicator;
-    private TextView mErrorDisplay;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.pb_loading_indicator) ProgressBar mLoadingIndicator;
+    @BindView(R.id.tv_error_message) TextView mErrorDisplay;
+    @BindView(R.id.rv_movie_list) RecyclerView mRecyclerView;
     private MovieAdapter mMovieAdapter;
 
     @Override
@@ -35,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-        mErrorDisplay = (TextView) findViewById(R.id.tv_error_message);
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_movie_list);
+        ButterKnife.bind(this);
 
         // App was tested with Nexus 5X emulator
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
