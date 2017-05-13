@@ -11,7 +11,7 @@ import static com.retuerm.android.blockbuster.Utility.NetworkUtils.buildMoviePos
  * Created by max on 05/02/2017.
  */
 
-// Helper class which represents a single movie
+// Helper class that represents a single movie
 public class MovieItem  implements Parcelable {
     private String title;
     private String release_date;

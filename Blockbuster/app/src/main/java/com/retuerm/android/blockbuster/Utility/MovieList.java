@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by max on 07/02/2017.
  */
 
-// Helper class that represents a TheMovieDB reponse
+// Helper class that represents a TheMovieDB response
 public class MovieList {
     private int page;
     private ArrayList<MovieItem> results;

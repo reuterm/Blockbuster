@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         // App was tested with Nexus 5X emulator
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-
         mRecyclerView.setHasFixedSize(true);
 
         mMovieAdapter = new MovieAdapter(this);
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         queryBundle.putString(SORTING_MODE_EXTRA, sortingMode);
 
         LoaderManager loaderManager = getSupportLoaderManager();
-        Loader<ArrayList<MovieItem>> movieListLoader = loaderManager.getLoader(LOADER_ID);
+//        Loader<ArrayList<MovieItem>> movieListLoader = loaderManager.getLoader(LOADER_ID);
 
         loaderManager.restartLoader(LOADER_ID, queryBundle, this);
     }
@@ -115,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         startActivity(intent);
     }
 
-    // Does not work correctly
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -124,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         Log.d("Blockbuster", "onSaveInstanceSate");
     }
 
-    // Does not work correclty
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
