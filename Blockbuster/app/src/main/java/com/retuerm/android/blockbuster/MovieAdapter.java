@@ -46,7 +46,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         MovieItem movie = mMovieList[position];
         Uri posterUri = Uri.parse(movie.getPosterURL());
-        Picasso.with(context).load(posterUri).into(holder.mPosterView);
+        Picasso.with(context)
+                .load(posterUri)
+                // intentionally scale pictures too big and crop them to ensure all have the same size
+                .resize(1000, 1000/2*3)
+                .centerCrop()
+                .into(holder.mPosterView);
     }
 
     @Override
