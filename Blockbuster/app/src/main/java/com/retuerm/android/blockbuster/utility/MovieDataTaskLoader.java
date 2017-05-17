@@ -1,4 +1,4 @@
-package com.retuerm.android.blockbuster.Utility;
+package com.retuerm.android.blockbuster.utility;
 
 import android.content.Context;
 import android.os.Bundle;

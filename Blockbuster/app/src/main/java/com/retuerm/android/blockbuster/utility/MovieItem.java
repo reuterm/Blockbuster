@@ -1,11 +1,7 @@
-package com.retuerm.android.blockbuster.Utility;
+package com.retuerm.android.blockbuster.utility;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import okhttp3.HttpUrl;
-
-import static com.retuerm.android.blockbuster.Utility.NetworkUtils.buildMoviePosterURL;
 
 /**
  * Created by max on 05/02/2017.

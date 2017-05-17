@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.retuerm.android.blockbuster.Utility.MovieItem;
+import com.retuerm.android.blockbuster.utility.MovieItem;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

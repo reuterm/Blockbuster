@@ -1,4 +1,4 @@
-package com.retuerm.android.blockbuster.Utility;
+package com.retuerm.android.blockbuster.utility;
 
 import java.util.ArrayList;
 

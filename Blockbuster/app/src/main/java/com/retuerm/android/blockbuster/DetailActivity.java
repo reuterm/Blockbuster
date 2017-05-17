@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.retuerm.android.blockbuster.Utility.MovieItem;
+import com.retuerm.android.blockbuster.utility.MovieItem;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -17,8 +17,6 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import com.retuerm.android.blockbuster.Utility.NetworkUtils;
 
 public class DetailActivity extends AppCompatActivity {
 

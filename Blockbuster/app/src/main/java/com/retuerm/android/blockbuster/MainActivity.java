@@ -17,8 +17,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.retuerm.android.blockbuster.Utility.MovieDataTaskLoader;
-import com.retuerm.android.blockbuster.Utility.MovieItem;
+import com.retuerm.android.blockbuster.utility.MovieDataTaskLoader;
+import com.retuerm.android.blockbuster.utility.MovieItem;
 
 import java.util.ArrayList;
 
