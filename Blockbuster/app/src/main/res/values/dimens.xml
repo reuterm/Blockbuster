@@ -1,10 +1,42 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Main Activity -->
     <dimen name="progress_bar_width">42dp</dimen>
     <dimen name="progress_bar_height">42dp</dimen>
-    <dimen name="detail_activity_title">30sp</dimen>
-    <dimen name="detail_activity_text">22sp</dimen>
-    <dimen name="detail_activity_elements_top_margin">8dp</dimen>
+    <dimen name="main_error_text_size">22sp</dimen>
+
+    <!-- Detail Activity-->
+    <dimen name="movie_title_padding_top">50dp</dimen>
+    <dimen name="movie_title_padding_bottom">50dp</dimen>
+    <dimen name="movie_title_padding_left">32dp</dimen>
+    <dimen name="movie_title_text_size">36sp</dimen>
+    <dimen name="movie_title_elevation">10dp</dimen>
+    <dimen name="detail_divider_margin">16dp</dimen>
+    <!-- Primary Info -->
+    <dimen name="detail_image_width">150dp</dimen>
+    <dimen name="detail_image_height">225dp</dimen>
+    <dimen name="detail_image_margin_left">32dp</dimen>
+    <dimen name="detail_image_margin_top">16dp</dimen>
+    <dimen name="release_year_margin_left">48dp</dimen>
+    <dimen name="release_year_margin_top">8dp</dimen>
+    <dimen name="release_year_text_size">42sp</dimen>
+    <dimen name="rating_margin_top">8dp</dimen>
+    <dimen name="rating_text_size">24sp</dimen>
+    <dimen name="fav_button_width">50dp</dimen>
+    <dimen name="fav_button_height">50dp</dimen>
+    <dimen name="fav_button_margin_top">16dp</dimen>
+    <dimen name="fav_button_margin_left">0dp</dimen>
+    <dimen name="plot_synopsis_text_size">18sp</dimen>
+    <dimen name="plot_synopsis_margin_left">24dp</dimen>
+    <dimen name="plot_synopsis_padding_right">24dp</dimen>
+    <dimen name="plot_synopsis_margin_top">16dp</dimen>
+    <!-- Movie Links -->
+    <dimen name="play_image_width">40dp</dimen>
+    <dimen name="play_image_height">40dp</dimen>
+    <dimen name="play_image_margin_left">0dp</dimen>
+    <dimen name="play_image_margin_top">0dp</dimen>
+    <dimen name="trailer_text_size">16sp</dimen>
+    <dimen name="trailer_margin_top">0dp</dimen>
+    <dimen name="trailer_margin_bottom">0dp</dimen>
+    <dimen name="trailer_margin_left">32dp</dimen>
 </resources>
