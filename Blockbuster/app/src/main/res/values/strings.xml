@@ -1,9 +1,10 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Blockbuster</string>
     <string name="sort_most_popular">Sort by most popular</string>
     <string name="sort_top_rated">Sort by top rated</string>
+    <string name="show_favourites">Show favourites</string>
     <string name="error_message">Could not retrieve movie list. Please try again.</string>
-    <string name="release_date_label">Release Date:</string>
-    <string name="plot_label">Plot:</string>
-    <string name="average_rating_label">Average Rating:</string>
+    <string name="average_rating_format">
+        <xliff:g id="rating">%1$1.1f</xliff:g>/10
+    </string>
 </resources>
