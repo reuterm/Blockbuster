@@ -4,6 +4,7 @@
     <string name="sort_top_rated">Sort by top rated</string>
     <string name="show_favourites">Show favourites</string>
     <string name="error_message">Could not retrieve movie list. Please try again.</string>
+    <string name="trailer_label">Trailers:</string>
     <string name="average_rating_format">
         <xliff:g id="rating">%1$1.1f</xliff:g>/10
     </string>
