@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by max on 03/02/2017.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
     private MovieItem[] mMovieList;
     private Context context;
 
@@ -29,7 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     private final MovieAdapterOnClickHandler mClickHandler;
 
-    public MovieAdapter(MovieAdapterOnClickHandler clickHandler)  {
+    public MovieListAdapter(MovieAdapterOnClickHandler clickHandler)  {
         mClickHandler = clickHandler;
     }
 
