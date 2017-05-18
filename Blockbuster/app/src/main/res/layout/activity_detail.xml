@@ -1,89 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
-
-        <ImageView
-            android:id="@+id/iv_movie_poster_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_movie_title"
-            android:textSize="@dimen/detail_activity_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:text="Chappie"
+            android:textColor="@color/icons"
+            android:textSize="36sp"
+            android:paddingTop="50dp"
+            android:paddingLeft="32dp"
+            android:paddingBottom="50dp"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="10dp"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/detail_activity_elements_top_margin"
+        <include
+            android:id="@+id/primary_info"
+            layout="@layout/movie_primary_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
-            <TextView
-                android:textSize="@dimen/detail_activity_text"
-                android:text="@string/release_date_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_movie_release_date"
-                android:layout_marginLeft="@dimen/detail_activity_elements_top_margin"
-                android:textSize="@dimen/detail_activity_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:paddingTop="@dimen/detail_activity_elements_top_margin"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/colorPrimaryDark" />
 
-            <TextView
-                android:textSize="@dimen/detail_activity_text"
-                android:text="@string/plot_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_movie_plot"
-                android:textSize="@dimen/detail_activity_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/detail_activity_elements_top_margin"
+        <include
+            android:id="@+id/links"
+            layout="@layout/movie_links"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:textSize="@dimen/detail_activity_text"
-                android:text="@string/average_rating_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_average_rating"
-                android:layout_marginLeft="@dimen/detail_activity_elements_top_margin"
-                android:textSize="@dimen/detail_activity_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
 </ScrollView>
