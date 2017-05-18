@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.retuerm.android.blockbuster.utility.MovieDataTaskLoader;
+import com.retuerm.android.blockbuster.utility.MovieListTaskLoader;
 import com.retuerm.android.blockbuster.utility.MovieItem;
 
 import java.util.ArrayList;
@@ -25,21 +25,22 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler,
+public class MainActivity extends AppCompatActivity implements MovieListAdapter.MovieAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<ArrayList<MovieItem>>{
 
-    private static final String PATH_MOST_POPULAR = "popular";
-    private static final String PATH_TOP_RATED = "top_rated";
+    public static final String PATH_MOST_POPULAR = "popular";
+    public static final String PATH_TOP_RATED = "top_rated";
+    public static final String FAVOURITES = "favourites";
     private static final String GRID_STATE_KEY = "blockbuster_gridlayout_state";
     public static final String PASS = "blockbuster_movie_item";
-    private static final int LOADER_ID = 42;
-    public static final String SORTING_MODE_EXTRA = "sorting_mode";
+    private static final int MOVIE_LOADER_ID = 42;
+    public static final String TASK_EXTRA = "task";
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.pb_loading_indicator) ProgressBar mLoadingIndicator;
     @BindView(R.id.tv_error_message) TextView mErrorDisplay;
     @BindView(R.id.rv_movie_list) RecyclerView mRecyclerView;
-    private MovieAdapter mMovieAdapter;
+    private MovieListAdapter mMovieAdapter;
     private Bundle queryBundle;
 
     @Override
@@ -54,14 +55,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mMovieAdapter = new MovieAdapter(this);
+        mMovieAdapter = new MovieListAdapter(this);
         mRecyclerView.setAdapter(mMovieAdapter);
 
         queryBundle = new Bundle();
 
-        queryBundle.putString(SORTING_MODE_EXTRA, PATH_MOST_POPULAR);
+        queryBundle.putString(TASK_EXTRA, PATH_MOST_POPULAR);
 
-        getSupportLoaderManager().initLoader(LOADER_ID, queryBundle, this);
+        getSupportLoaderManager().initLoader(MOVIE_LOADER_ID, queryBundle, this);
     }
 
     @Override
@@ -71,17 +72,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         return true;
     }
 
-    private void loadMovieList(String sortingMode) {
+    private void loadMovieList(String task) {
         mRecyclerView.setVisibility(View.INVISIBLE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
 
         // Handle AsyncTask to retrieve movie list
-        queryBundle.putString(SORTING_MODE_EXTRA, sortingMode);
+        queryBundle.putString(TASK_EXTRA, task);
 
         LoaderManager loaderManager = getSupportLoaderManager();
-//        Loader<ArrayList<MovieItem>> movieListLoader = loaderManager.getLoader(LOADER_ID);
 
-        loaderManager.restartLoader(LOADER_ID, queryBundle, this);
+        loaderManager.restartLoader(MOVIE_LOADER_ID, queryBundle, this);
     }
 
     private void showErrorMessage() {
@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                 return true;
             case R.id.action_sort_top_rated:
                 loadMovieList(PATH_TOP_RATED);
+                return true;
+            case R.id.action_show_favourites:
+                loadMovieList(FAVOURITES);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public Loader<ArrayList<MovieItem>> onCreateLoader(int id, Bundle args) {
-        return new MovieDataTaskLoader(this, args);
+        return new MovieListTaskLoader(this, args);
     }
 
     @Override
