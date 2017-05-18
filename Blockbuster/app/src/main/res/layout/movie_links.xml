@@ -4,12 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="24dp">
+    android:paddingLeft="24dp"
+    android:paddingStart="24dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Trailers:"
+        android:text="@string/trailer_label"
         android:textColor="@color/primary_text"
         android:textSize="24sp"/>
 

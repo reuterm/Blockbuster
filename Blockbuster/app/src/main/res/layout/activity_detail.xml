@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -16,12 +15,13 @@
             android:layout_height="wrap_content"
             tools:text="Chappie"
             android:textColor="@color/icons"
-            android:textSize="36sp"
-            android:paddingTop="50dp"
-            android:paddingLeft="32dp"
-            android:paddingBottom="50dp"
+            android:textSize="@dimen/movie_title_text_size"
+            android:paddingTop="@dimen/movie_title_padding_top"
+            android:paddingLeft="@dimen/movie_title_padding_left"
+            android:paddingStart="@dimen/movie_title_padding_left"
+            android:paddingBottom="@dimen/movie_title_padding_bottom"
             android:background="@color/colorPrimaryDark"
-            android:elevation="10dp"/>
+            android:elevation="@dimen/movie_title_elevation"/>
 
         <include
             android:id="@+id/primary_info"
@@ -33,7 +33,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/detail_divider_margin"
             android:background="@color/colorPrimaryDark" />
 
         <include
