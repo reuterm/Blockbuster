@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.retuerm.android.blockbuster.data.FavouriteMoviesContract.FavouriteMoviesEntry;
+import com.retuerm.android.blockbuster.utility.SimpleDividerItemDecoration;
 import com.retuerm.android.blockbuster.utility.TrailerListTaskLoader;
 import com.retuerm.android.blockbuster.utility.MovieItem;
 import com.retuerm.android.blockbuster.utility.MovieTrailer;
@@ -64,6 +65,7 @@ public class DetailActivity extends AppCompatActivity implements MovieTrailerLis
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
 
         if(intent.hasExtra(MainActivity.PASS)) {
             mMovie = intent.getParcelableExtra(MainActivity.PASS);
