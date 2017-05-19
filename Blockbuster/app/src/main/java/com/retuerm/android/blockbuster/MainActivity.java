@@ -50,8 +50,9 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
 
         ButterKnife.bind(this);
 
-        // App was tested with Nexus 5X emulator
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
+        // App was tested with Nexus 5X and Nexus 9 emulator
+        int columns = getResources().getInteger(R.integer.column_count);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, columns, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
