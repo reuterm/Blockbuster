@@ -18,7 +18,7 @@
 
     <TextView
         android:text="@string/review_label"
-        android:layout_marginTop="@dimen/lable_margin_top"
+        android:layout_marginTop="@dimen/label_margin_top"
         style="@style/DetailLabel"/>
 
     <android.support.v7.widget.RecyclerView
