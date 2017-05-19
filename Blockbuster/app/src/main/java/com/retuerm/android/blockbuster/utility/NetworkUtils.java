@@ -30,13 +30,17 @@ public class NetworkUtils {
         @GET("3/movie/{movieId}/videos")
         Call<MovieTrailerList> getMovieTrailer(@Path("movieId") int movieId,
                                                @Query("api_key") String apiKey);
+
+        @GET("3/movie/{movieId}/reviews")
+        Call<MovieReviewList> getMovieReviews(@Path("movieId") int movieId,
+                                              @Query("api_key") String apiKey);
     }
 
     public static String buildMoviePosterURL (String posterPath) {
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("https")
                 .host("image.tmdb.org")
-                // App was testet with Nexus 5X emulator
+                // App was tested with Nexus 5X emulator
                 .addPathSegments("t/p/w500")
                 // Drop leading "/" because OkHTTP will try to encode it
                 .addEncodedPathSegment(posterPath.substring(1))
