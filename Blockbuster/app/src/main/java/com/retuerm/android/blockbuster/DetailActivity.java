@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.retuerm.android.blockbuster.data.FavouriteMoviesContract.FavouriteMoviesEntry;
+import com.retuerm.android.blockbuster.utility.MovieLinks;
+import com.retuerm.android.blockbuster.utility.MovieReview;
 import com.retuerm.android.blockbuster.utility.SimpleDividerItemDecoration;
-import com.retuerm.android.blockbuster.utility.TrailerListTaskLoader;
+import com.retuerm.android.blockbuster.utility.MovieLinkListTaskLoader;
 import com.retuerm.android.blockbuster.utility.MovieItem;
 import com.retuerm.android.blockbuster.utility.MovieTrailer;
 import com.retuerm.android.blockbuster.utility.NetworkUtils;
@@ -32,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity implements MovieTrailerListAdapter.TrailerAdapterOnClickHandler,
-        LoaderManager.LoaderCallbacks<ArrayList<MovieTrailer>> {
+        MovieReviewListAdapter.ReviewAdapterOnClickHandler, LoaderManager.LoaderCallbacks<MovieLinks> {
 
     @BindView(R.id.iv_movie_poster) ImageView mPosterDisplay;
     @BindView(R.id.tv_movie_title) TextView mTitleDisplay;
@@ -40,9 +42,11 @@ public class DetailActivity extends AppCompatActivity implements MovieTrailerLis
     @BindView(R.id.tv_plot_synopsis) TextView mPlotDisplay;
     @BindView(R.id.tv_rating) TextView mAverageRatingDisplay;
     @BindView(R.id.iv_favourite_bt) ImageButton mFavButton;
-    @BindView(R.id.trailer_list) RecyclerView mRecyclerView;
+    @BindView(R.id.trailer_list) RecyclerView mTrailerRecyclerView;
+    @BindView(R.id.review_list) RecyclerView mReviewRecyclerView;
 
     private MovieTrailerListAdapter mTrailerAdapter;
+    private MovieReviewListAdapter mReviewAdapter;
     private Bundle queryBundle;
     private MovieItem mMovie;
 
@@ -60,12 +64,19 @@ public class DetailActivity extends AppCompatActivity implements MovieTrailerLis
         Intent intent = getIntent();
 
         mTrailerAdapter = new MovieTrailerListAdapter(this);
-        mRecyclerView.setAdapter(mTrailerAdapter);
+        mTrailerRecyclerView.setAdapter(mTrailerAdapter);
 
-        LinearLayoutManager layoutManager =
+        LinearLayoutManager trailerLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
+        mTrailerRecyclerView.setLayoutManager(trailerLayoutManager);
+        mTrailerRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
+
+        LinearLayoutManager reviewLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mReviewAdapter = new MovieReviewListAdapter(this);
+        mReviewRecyclerView.setAdapter(mReviewAdapter);
+        mReviewRecyclerView.setLayoutManager(reviewLayoutManager);
+        mReviewRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
 
         if(intent.hasExtra(MainActivity.PASS)) {
             mMovie = intent.getParcelableExtra(MainActivity.PASS);
@@ -136,21 +147,28 @@ public class DetailActivity extends AppCompatActivity implements MovieTrailerLis
     }
 
     @Override
-    public Loader<ArrayList<MovieTrailer>> onCreateLoader(int id, Bundle args) {
-        return new TrailerListTaskLoader(this, args);
+    public Loader<MovieLinks> onCreateLoader(int id, Bundle args) {
+        return new MovieLinkListTaskLoader(this, args);
     }
 
     @Override
-    public void onLoadFinished(Loader<ArrayList<MovieTrailer>> loader, ArrayList<MovieTrailer> data) {
+    public void onLoadFinished(Loader<MovieLinks> loader, MovieLinks data) {
         if(data != null) {
-            MovieTrailer[] trailerList = new MovieTrailer[data.size()];
-            trailerList = data.toArray(trailerList);
+            ArrayList<MovieTrailer> trailers = data.getTrailers();
+            ArrayList<MovieReview> reviews = data.getReviews();
+
+            MovieTrailer[] trailerList = new MovieTrailer[trailers.size()];
+            MovieReview[] reviewList = new MovieReview[reviews.size()];
+            trailerList = trailers.toArray(trailerList);
+            reviewList = reviews.toArray(reviewList);
+
             mTrailerAdapter.setTrailerList(trailerList);
+            mReviewAdapter.setReviewList(reviewList);
         }
     }
 
     @Override
-    public void onLoaderReset(Loader<ArrayList<MovieTrailer>> loader) {
+    public void onLoaderReset(Loader<MovieLinks> loader) {
 
     }
 
@@ -159,5 +177,11 @@ public class DetailActivity extends AppCompatActivity implements MovieTrailerLis
         String url = NetworkUtils.buildYoutubeURL(trailer.getKey());
         Intent watchTrailerIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(watchTrailerIntent);
+    }
+
+    @Override
+    public void onClick(MovieReview review) {
+        Intent viewReviewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(review.getUrl()));
+        startActivity(viewReviewIntent);
     }
 }
