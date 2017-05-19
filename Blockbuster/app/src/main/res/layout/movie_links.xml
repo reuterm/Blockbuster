@@ -6,18 +6,25 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/trailer_label"
-        android:textColor="@color/primary_text"
-        android:textSize="@dimen/trailer_label_text_size"
-        android:layout_marginLeft="@dimen/trailer_label_margin_left"
-        android:layout_marginStart="@dimen/trailer_label_margin_left"/>
+        style="@style/DetailLabel"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/trailer_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:text="@string/review_label"
+        android:layout_marginTop="@dimen/lable_margin_top"
+        style="@style/DetailLabel"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/review_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 
