@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/error_message"
         android:textSize="@dimen/main_error_text_size"
+        android:layout_margin="@dimen/main_error_margin"
         android:layout_gravity="top"
         android:visibility="invisible"/>
 
