@@ -5,7 +5,9 @@
     <string name="show_favourites">Show favourites</string>
     <string name="error_message">Could not retrieve movie list. Please try again.</string>
     <string name="trailer_label">Trailers:</string>
+    <string name="review_label">Reviews:</string>
     <string name="average_rating_format">
         <xliff:g id="rating">%1$1.1f</xliff:g>/10
     </string>
+    <string name="review_name_format">Review %1$d</string>
 </resources>
