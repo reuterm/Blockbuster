@@ -7,5 +7,34 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="DetailLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">@dimen/label_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/label_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/label_margin_left</item>
+    </style>
+
+    <style name="LinkItemImage">
+        <item name="android:layout_width">@dimen/play_image_width</item>
+        <item name="android:layout_height">@dimen/play_image_height</item>
+        <item name="android:layout_marginTop">@dimen/play_image_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/play_image_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/play_image_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/play_image_margin_left</item>
+    </style>
+
+    <style name="LinkItemText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">@dimen/trailer_text_size</item>
+        <item name="android:layout_marginTop">@dimen/trailer_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/trailer_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/trailer_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/trailer_margin_left</item>
+    </style>
 
 </resources>
