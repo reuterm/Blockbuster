@@ -14,6 +14,7 @@
     <dimen name="movie_title_elevation">10dp</dimen>
     <dimen name="detail_divider_margin">16dp</dimen>
     <!-- Primary Info -->
+    <dimen name="primary_info_layout_height">0dp</dimen>
     <dimen name="detail_image_width">150dp</dimen>
     <dimen name="detail_image_height">225dp</dimen>
     <dimen name="detail_image_margin_left">32dp</dimen>

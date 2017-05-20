@@ -3,6 +3,10 @@
     <dimen name="detail_image_width">250dp</dimen>
     <dimen name="detail_image_height">375dp</dimen>
     <dimen name="plot_synopsis_text_size">24sp</dimen>
+    <dimen name="plot_synopsis_margin_left">0dp</dimen>
+    <dimen name="plot_synopsis_margin_right">0dp</dimen>
+    <dimen name="plot_synopsis_margin_top">0dp</dimen>
+    <dimen name="plot_synopsis_layout_width">0dp</dimen>
 
     <dimen name="link_item_text_size">20sp</dimen>
 </resources>

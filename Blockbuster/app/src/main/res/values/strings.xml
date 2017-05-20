@@ -10,4 +10,11 @@
         <xliff:g id="rating">%1$1.1f</xliff:g>/10
     </string>
     <string name="review_name_format">Review %1$d</string>
+
+    <string name="example_title">Chappie</string>
+    <string name="example_release_year">2015</string>
+    <string name="example_rating">8.1/10</string>
+    <string name="example_plot_synopsis">Every child comes into the world full of promise, and none more so than Chappie: he is gifted, special, a prodigy. Chapie is a robot.</string>
+    <string name="example_trailer_title">Trailer 1</string>
+    <string name="example_review_title">Review 1</string>
 </resources>
