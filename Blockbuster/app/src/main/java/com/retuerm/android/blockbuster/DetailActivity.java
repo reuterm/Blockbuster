@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class DetailActivity extends AppCompatActivity implements MovieTrailerLis
     @BindView(R.id.tv_release_year) TextView mReleaseYearDisplay;
     @BindView(R.id.tv_plot_synopsis) TextView mPlotDisplay;
     @BindView(R.id.tv_rating) TextView mAverageRatingDisplay;
-    @BindView(R.id.iv_favourite_bt) ImageButton mFavButton;
+    @BindView(R.id.fab_favourite) FloatingActionButton mFavButton;
     @BindView(R.id.trailer_list) RecyclerView mTrailerRecyclerView;
     @BindView(R.id.review_list) RecyclerView mReviewRecyclerView;
 
